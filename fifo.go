@@ -94,6 +94,14 @@ func (q *Fifo) Peek() ([]byte, error) {
 	return q.getByID(q.head + 1)
 }
 
+func (q *Fifo) PeekString() (string, error) {
+	bts, err := q.Peek()
+	if err != nil {
+		return "", err
+	}
+	return string(bts), nil
+}
+
 func (q *Fifo) Push(bts []byte) error {
 	if !q.opened {
 		return ErrDBClosed
