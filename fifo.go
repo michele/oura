@@ -71,7 +71,7 @@ func (q *Fifo) init() error {
 func (q *Fifo) getByID(id uint64) ([]byte, error) {
 	var val []byte
 	if q.Empty() {
-		return nil, ErrKeyNotFound
+		return nil, ErrEmptyQueue
 	}
 	err := q.db.View(func(tx *bolt.Tx) error {
 		b := tx.Bucket(fifoBucketName)
