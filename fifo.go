@@ -40,7 +40,7 @@ func (q *Fifo) init() error {
 	q.l.Lock()
 	defer q.l.Unlock()
 	err := q.db.Update(func(tx *bolt.Tx) error {
-		_, err := tx.CreateBucket(fifoBucketName)
+		_, err := tx.CreateBucketIfNotExists(fifoBucketName)
 		if err != nil {
 			return err
 		}
